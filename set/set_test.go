@@ -6,7 +6,7 @@ import (
 )
 
 func TestSet(t *testing.T) {
-	s := NewSet()
+	s := NewSet[string]()
 	s.Put("one")
 	s.Put("two")
 	fmt.Println(s.Has("one"))

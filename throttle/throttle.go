@@ -12,7 +12,7 @@ type Valve struct {
 
 // 最多允许并行调度的数目
 // 控制并发数量 防止并发数过高 把下游服务搞挂
-func NewThrottle(capacity uint64) *Valve {
+func NewValve(capacity uint64) *Valve {
 	return &Valve{
 		capacity: capacity,
 		c:        make(chan struct{}, capacity),
@@ -21,10 +21,7 @@ func NewThrottle(capacity uint64) *Valve {
 }
 
 func (v *Valve) Add() {
-	select {
-	case v.c <- struct{}{}:
-		break
-	}
+	v.c <- struct{}{}
 	v.wg.Add(1)
 }
 

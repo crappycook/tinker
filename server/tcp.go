@@ -3,7 +3,6 @@ package server
 import (
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"net"
 )
@@ -35,5 +34,5 @@ func (s *TcpServer) Start() {
 }
 
 func handleConn(conn *net.TCPConn) {
-	io.Copy(ioutil.Discard, conn)
+	io.Copy(io.Discard, conn)
 }
